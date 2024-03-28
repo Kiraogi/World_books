@@ -1,5 +1,34 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
+from django.views.generic import ListView, DetailView
+
+
+class AuthorDetailView(DetailView):
+    model = Author
+    # context_object_name = 'author'
+
+
+class AuthorListView(ListView):
+    model = Author
+    # context_object_name = 'authors'
+    paginate_by = 3
+
+
+class BookDeatilView(DetailView):
+    model = Book
+    context_object_name = 'book'
+
+
+class BookListView(ListView):
+    model = Book
+    context_object_name = 'books'
+    paginate_by = 3
+
+
+# def about(request):
+#     text_head = 'Сведения о компании'
+#     name = 'Компания "Мир Книг"'
+#     rab1 =
 
 
 def index(request):
