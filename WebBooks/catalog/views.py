@@ -31,8 +31,8 @@ def about(request):
     rab1 = 'Продажа книжек'
     rab2 = 'Покупка книжек'
     rab3 = 'Доставка книжек'
-    rad4 = 'Оплата книжек'
-    context = {'text_head': text_head, 'name': name, 'rab1': rab1, 'rab2': rab2, 'rab3': rab3, 'rad4': rad4}
+    rab4 = 'Оплата книжек'
+    context = {'text_head': text_head, 'name': name, 'rab1': rab1, 'rab2': rab2, 'rab3': rab3, 'rab4': rab4}
     # передача словаря context с данными в шаблон
     return render(request, 'catalog/about.html', context)
 

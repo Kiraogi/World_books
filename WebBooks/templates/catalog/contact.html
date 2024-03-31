@@ -1,8 +1,9 @@
 {% extends "catalog/base.html" %}
 <head>
     {% load static %}
-        <!-- Подключите Яндекс API с вашим ключом -->
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=76411c88-6549-4a12-bb08-6cce2d30e00a&lang=ru_RU" type="text/javascript"></script>
+    <!-- Подключите Яндекс API с вашим ключом -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=76411c88-6549-4a12-bb08-6cce2d30e00a&lang=ru_RU"
+            type="text/javascript"></script>
 </head>
 {% block content %}
 <div class="container-fluid">
@@ -28,9 +29,7 @@
                 <tr>
                     <th>Адрес</th>
                     <th>Телефон</th>
-                    <th>
-                        <e-></e->
-                    </th>
+                    <th>E-mail</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,8 +44,8 @@
         <!-- Пустые колонки справа от таблицы-->
         <div class="col-3"></div>
         <!-- Карта -->
-        <div id="map"  style="width: 1000x; height: 600px;"></div>
-            <script type="text/javascript">
+        <div id="map" style="width: 1000x; height: 400px;"></div>
+        <script type="text/javascript">
             ymaps.ready(init);
 
             function init(){
@@ -71,9 +70,8 @@
                     }
                 );
             }
-            </script>
-            <div class="col-2"></div>
-        </div>
+        </script>
+        <div class="col-2"></div>
     </div>
 </div>
 {% endblock content %}

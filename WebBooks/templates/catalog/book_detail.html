@@ -11,7 +11,7 @@
             {% endfor %}
     </div>
     <img src="{{ book.photo.url }}" alt="connect" style="max-height:200px">
-    <a href="" {{ book.photo.url }} class="btn btn-primary" target="_blank">Показать</a>
+    <a href="{{ book.photo.url }}" class="btn btn-primary" target="_blank">Показать</a>
     <div class="row my-2">
         <div class="col">
             <p><strong>Цена:</strong> {{ book.price }} руб.</p>
