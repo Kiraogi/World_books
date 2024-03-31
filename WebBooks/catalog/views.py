@@ -40,7 +40,7 @@ def about(request):
 def contact(request):
     text_head = 'Контакты'
     name = 'Компания "Мир Книг"'
-    address = 'Москва, ул. Ленина, д. 1'
+    address = 'Москва, Сивцев Вражек, 27'
     tel = '8-800-555-35-35'
     email = 'MirKnig@example.com'
     # Словарь для передачи данных в шаблон index.html

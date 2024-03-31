@@ -1,0 +1,79 @@
+{% extends "catalog/base.html" %}
+<head>
+    {% load static %}
+        <!-- Подключите Яндекс API с вашим ключом -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=76411c88-6549-4a12-bb08-6cce2d30e00a&lang=ru_RU" type="text/javascript"></script>
+</head>
+{% block content %}
+<div class="container-fluid">
+    <div class="row my-2 text-center">
+        <div class="col-5"></div>
+        <div class="col-1 text-center">
+            <img src="{% static 'images/Logo_1.png' %}">
+        </div>
+        <div class="col-5"></div>
+    </div>
+    <div class="row my-2 text-primary text-center">
+        <h3>{{ name }}</h3>
+    </div>
+    <div class="row my-2 text-muted ">
+        <h4 class="text-center">{{ text_head }}</h4>
+    </div>
+    <div class="row my-2">
+        <!-- Пустые колонки слева от таблицы-->
+        <div class="col-3"></div>
+        <div class="col-6">
+            <table class="table table-striped table-bordered text-start">
+                <thead>
+                <tr>
+                    <th>Адрес</th>
+                    <th>Телефон</th>
+                    <th>
+                        <e-></e->
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ address }}</td>
+                    <td>{{ tel }}</td>
+                    <td>{{ email }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Пустые колонки справа от таблицы-->
+        <div class="col-3"></div>
+        <!-- Карта -->
+        <div id="map"  style="width: 1000x; height: 600px;"></div>
+            <script type="text/javascript">
+            ymaps.ready(init);
+
+            function init(){
+                var myMap = new ymaps.Map("map", {
+                    center: [55.753994, 37.622093], // Координаты центра карты
+                    zoom: 9
+                });
+
+                // Используйте геокодер для определения координат по адресу
+                var myGeocoder = ymaps.geocode("Москва, Сивцев Вражек, 27");
+                myGeocoder.then(
+                    function (res) {
+                        var coordinates = res.geoObjects.get(0).geometry.getCoordinates();
+                        // Помещаем метку на карту
+                        var myPlacemark = new ymaps.Placemark(coordinates);
+                        myMap.geoObjects.add(myPlacemark);
+                        // Центрируем карту
+                        myMap.setCenter(coordinates, 15);
+                    },
+                    function (err) {
+                        // Обработка ошибки
+                    }
+                );
+            }
+            </script>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
