@@ -42,7 +42,16 @@
             <nav class="nav flex-column">
                 <a class="nav-link" href="{% url 'books-list' %}">Все книги</a>
                 <a class="nav-link" href="{% url 'authors-list' %}">Все авторы</a>
-                <a class="nav-link" href="{% url 'index' %}">Ссылка 3</a>
+                {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="post" class="nav-link">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button type="submit" class="btn btn-link p-0" style="text-decoration: none;">Выход</button>
+                </form>
+                <div>Вошел: {{ user.get_username }}</div>
+                {% else %}
+                <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Вход</a>
+                {% endif %}
             </nav>
             {% endblock sidebar %}
         </div>

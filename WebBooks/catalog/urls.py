@@ -9,4 +9,5 @@ urlpatterns = [
     path('authors/<int:pk>/', views.AuthorDetailView.as_view(), name='author-detail'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
+    path('logged_out/', views.logged_out, name='logged-out'),
 ]

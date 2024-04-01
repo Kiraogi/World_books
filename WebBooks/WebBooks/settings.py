@@ -27,15 +27,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Application definition
-
 INSTALLED_APPS = [
+    'catalog',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog',
     'django_cleanup',
 ]
 
@@ -123,3 +122,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Переадресация на главную страницу сайта после входа в систему
+LOGIN_REDIRECT_URL = '/'
+
+# Установите URL для перенаправления после выхода из системы
+LOGOUT_REDIRECT_URL = 'logged-out'  # Используйте имя URL, которое вы определили
+
+# Настройки отправки e-mail
+''' Это пробная отправка на консоль '''
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

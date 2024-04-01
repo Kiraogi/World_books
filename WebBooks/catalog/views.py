@@ -61,6 +61,9 @@ def index(request):
     # Данные об авторах книг
     author = Author.objects
     num_authors = Author.objects.count()
+    # Число посещенйи этого view, подсчитывает в переменной session
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
     # Словарь для передачи данных в шаблон index.html
     context = {
         'text_head': text_head,
@@ -69,7 +72,13 @@ def index(request):
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'author': author,
-        'num_authors': num_authors
+        'num_authors': num_authors,
+        'num_visits': num_visits,
     }
     # Передача словаря context с данными в шаблон
     return render(request, 'catalog/index.html', context)
+
+
+def logged_out(request):
+    # Логика для отображения страницы после выхода из системы
+    return render(request, 'registration/logged_out.html')
