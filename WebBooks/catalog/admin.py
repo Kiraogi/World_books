@@ -47,12 +47,11 @@ class BookAdmin(admin.ModelAdmin):
 # Регистрация класса BookInstanceAdmin для экземпляров книг
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    # list_display = ('inv_nom', 'book', 'status', 'due_back')
-    # list_filter = ('book', 'status', 'due_back')
+    list_display = ('book', 'status', 'borrower', 'due_back', 'id')
     list_filter = ('book', 'status')
     fieldsets = (
         ('Экземпляр книги', {'fields': ('book', 'inv_nom')}),
-        ('Статус и окончание его действия', {'fields': ('status', 'due_back')}),
+        ('Статус и окончание его действия', {'fields': ('status', 'due_back', 'borrower')}),
     )
 
 
