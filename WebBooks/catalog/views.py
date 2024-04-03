@@ -1,10 +1,10 @@
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
+from .forms import Form_add_author, Form_edit_author
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
-from .forms import Form_add_author
 from django.urls import reverse
 
 
@@ -139,3 +139,19 @@ def delete(request, id):
         return HttpResponseRedirect("/edit_authors/")
     except:
         return HttpResponseNotFound("<h2>Автор не найден</h2>")
+
+
+# Изменение данных об авторе в БД
+def edit_author(request, id):
+    author = Author.objects.get(id=id)
+    # author = get_object_or_404(Author, id=id)
+    if request.method == 'POST':
+        instance = Author.objects.get(pk=id)
+        form = Form_edit_author(request.POST, request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/edit_authors/")
+    else:
+        form = Form_edit_author(instance=author)
+        content = {'form': form}
+        return render(request, "catalog/edit_author.html", content)
