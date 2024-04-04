@@ -155,3 +155,10 @@ def edit_author(request, id):
         form = Form_edit_author(instance=author)
         content = {'form': form}
         return render(request, "catalog/edit_author.html", content)
+
+
+# Вызов страницы для редактирования книг
+def edit_books(request):
+    book = Book.objects.all()
+    context = {'book': book}
+    return render(request, "catalog/edit_books.html", context)
