@@ -3,9 +3,10 @@ from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 from .forms import Form_add_author, Form_edit_author
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 
 class AuthorDetailView(DetailView):
@@ -162,3 +163,23 @@ def edit_books(request):
     book = Book.objects.all()
     context = {'book': book}
     return render(request, "catalog/edit_books.html", context)
+
+
+# Класс для создания в БД новой записи о книге
+class BookCreate(CreateView):
+    model = Book
+    fields = '__all__'
+    success_url = reverse_lazy('edit_books')
+
+
+# Класс дял обновления в БД записи о книге
+class BookUpdate(UpdateView):
+    model = Book
+    fields = '__all__'
+    success_url = reverse_lazy('edit_books')
+
+
+# Класс для удаления из БД записи о книге
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('edit_books')

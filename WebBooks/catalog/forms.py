@@ -1,6 +1,6 @@
 from django import forms
 from datetime import date
-from .models import Author
+from .models import Author, Book
 
 
 # Форма для добавления в БД новых авторов
@@ -13,8 +13,15 @@ class Form_add_author(forms.Form):
     photo = forms.ImageField(label="Фото автора")
 
 
-# форма для изменения сведений об авторе
+# Форма для изменения сведений об авторе
 class Form_edit_author(forms.ModelForm):
     class Meta:
         model = Author
+        fields = '__all__'
+
+
+# Форма для редактирования книг
+class BookModelForm(forms.ModelForm):
+    class Meta:
+        model = Book
         fields = '__all__'
