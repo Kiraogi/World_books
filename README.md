@@ -15,6 +15,9 @@
 **Клонирование репозитория**
 git clone https://github.com/Kiraogi/World_books.git
 
+**Переход в директорию проекта**
+cd WebBooks
+
 **Создайте виртуальное окружение. Выполните следующую команду для создания виртуального окружения с именем ll_env в текущем каталоге проекта:**  
 Для Windows: python -m venv ll_env  
 Для macOS и Linux: python3 -m venv ll_env  
