@@ -13,7 +13,7 @@
 Для начала работы клонируйте репозиторий и установите необходимые зависимости.  
 
 **Клонирование репозитория**
-git clone https://github.com/Kiraogi/Learning-Log.git
+git clone https://github.com/Kiraogi/World_books.git
 
 **Создайте виртуальное окружение. Выполните следующую команду для создания виртуального окружения с именем ll_env в текущем каталоге проекта:**  
 Для Windows: python -m venv ll_env  
