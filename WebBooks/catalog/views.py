@@ -1,9 +1,11 @@
 from django.http import HttpResponseRedirect, HttpResponseNotFound
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Book, Author, BookInstance, Genre
 from .forms import Form_add_author, Form_edit_author
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.urls import reverse, reverse_lazy
@@ -183,3 +185,23 @@ class BookUpdate(UpdateView):
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('edit_books')
+
+
+def register(request):
+    """Регистрирует нового пользователя"""
+    if request.method != 'POST':
+        # Выводит пустую форму регистрации.
+        form = UserCreationForm()
+    else:
+        # Обработка заполненных полей формы.
+        form = UserCreationForm(data=request.POST)
+
+        if form.is_valid():
+            new_user = form.save()
+            # Выполнение входа и перенаправление на домашнюю страницу.
+            login(request, new_user)
+            return redirect('index')
+
+    # Вывести пустую или недействительную форму.
+    context = {'form': form}
+    return render(request, 'registration/register.html', context)

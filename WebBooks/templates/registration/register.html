@@ -1,0 +1,23 @@
+{% extends "catalog/base.html" %}
+{% load bootstrap5 %}
+
+{% block page_header %}
+<h2 class="mb-4">Регистрация</h2>
+{% endblock page_header %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post" action="{% url 'register' %}" class="needs-validation" novalidate>
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Зарегистрироваться</button>
+                </div>
+                <input type="hidden" name="next" value="{% url 'index' %}"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
